@@ -1,0 +1,121 @@
+:root {
+    /* Light mode */
+    --bg-light: #f7f8f9;
+    --bg-hover-light: #000000;
+    --text-light: #000000;
+    --text-hover-light: #ffffff;
+    --border-light: #000000;
+    --border-hover-light: #000000;
+  
+    /* Dark mode */
+    --bg-dark: #101214;
+    --bg-hover-dark: #dee4ea;
+    --text-dark: #ffffff;
+    --text-hover-dark: #000000;
+    --border-dark: #444444;
+    --border-hover-dark: #dee4ea;
+}
+  
+body {
+    border-radius: 12px;
+    margin: 0;
+    padding: 10px 10px 70px;
+    width: 300px;
+    font-family: sans-serif;
+    overflow-y: auto;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+
+    background: linear-gradient(to right, rgba(128, 128, 128, 0.071) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(128, 128, 128, 0.071) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+  
+#image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 80px);
+    gap: 10px;
+    margin-bottom: 60px;
+}
+  
+.image-container {
+    position: relative;
+}
+  
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+.image-container input[type="checkbox"] {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 2;
+}
+
+#download-btn-container {
+    position: fixed;
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-light);
+    border-top: 1px solid var(--border-light);
+}
+  
+#download-btn {
+    z-index: 3;
+    cursor: pointer;
+    
+    width: 90%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1em;
+    border-radius: 4px;
+  
+    background: var(--bg-light);
+    border: 1px solid var(--border-light);
+    color: var(--text-light);
+  }
+  
+#download-btn:hover {
+    background-color: var(--bg-hover-light);
+    border-color: var(--border-hover-light);
+    color: var(--text-hover-light);
+}
+  
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+    }
+  
+    .image-container img {
+        border-color: var(--border-dark);
+    }
+
+    #download-btn-container {
+        background: var(--bg-dark);
+        border-top: 1px solid var(--border-dark);
+    }
+  
+    #download-btn {
+        background-color: var(--bg-dark);
+        border-color: var(--border-dark);
+        color: var(--text-dark);
+    }
+  
+    #download-btn:hover {
+        background-color: var(--bg-hover-dark);
+        border-color: var(--border-hover-dark);
+        color: var(--text-hover-dark);
+    }
+}  

@@ -1,0 +1,19 @@
+{
+    "name": "DL Image Extension",
+    "description": "Bulk download all images visible on page",
+    "version": "1.0.1",
+    "manifest_version": 3,
+    "permissions": ["scripting", "activeTab", "downloads"],
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "16": "favicon.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "js": ["scripts/content.js"],
+            "matches": ["*://*/*"]
+        }
+    ]
+}
