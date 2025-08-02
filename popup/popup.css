@@ -33,29 +33,60 @@ body {
   
 #image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 80px);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 8px;
     margin-bottom: 60px;
 }
   
 .image-container {
     position: relative;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
   
 .image-container img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
     display: block;
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
-    cursor: pointer;
+    border: none;
+    border-radius: 6px;
 }
   
 .image-container input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
     position: absolute;
-    top: 4px;
+    top: 6px;
+    left: 6px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    background-color: var(--bg-light);
+    cursor: pointer;
+}
+
+.image-container input[type="checkbox"]:checked {
+    background-color: var(--text-light);
+    border-color: var(--text-light);
+}
+  
+.image-container input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
     left: 4px;
-    z-index: 2;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--bg-light);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
 
 #download-btn-container {
@@ -91,6 +122,44 @@ body {
     border-color: var(--border-hover-light);
     color: var(--text-hover-light);
 }
+
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+.skeleton::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    height: 100%;
+    width: 150%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    animation: shimmer 1.5s infinite;
+}
+  
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+.skeleton-box {
+    width: 100%;
+    height: 60px;
+    border-radius: 6px;
+}
   
 @media (prefers-color-scheme: dark) {
     body {
@@ -100,6 +169,20 @@ body {
   
     .image-container img {
         border-color: var(--border-dark);
+    }
+
+    .image-container input[type="checkbox"] {
+        border-color: var(--border-dark);
+        background-color: var(--bg-dark);
+    }
+    
+    .image-container input[type="checkbox"]:checked {
+        background-color: var(--bg-dark);
+        border-color: var(--border-dark);
+    }
+    
+    .image-container input[type="checkbox"]:checked::after {
+        border-color: var(--text-dark);
     }
 
     #download-btn-container {
@@ -117,5 +200,19 @@ body {
         background-color: var(--bg-hover-dark);
         border-color: var(--border-hover-dark);
         color: var(--text-hover-dark);
+    }
+
+    .skeleton {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .skeleton::before {
+        background: linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0) 30%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0) 70%
+        );
     }
 }  

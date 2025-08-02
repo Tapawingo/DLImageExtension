@@ -2,10 +2,17 @@
 <html>
     <head>
         <link rel="stylesheet" href="popup.css">
+        <link rel="stylesheet" href="../css/all.min.css">
         <script src="../scripts/jszip.min.js"></script>
     </head>
     <body>
         <div id="image-grid"></div>
+
+        <div id="no-images" style="display: none; text-align: center; margin-top: 2rem;">
+            <div style="font-size: 2rem;"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <p>No images found</p>
+        </div>
+
         <div id="download-btn-container">
             <button id="download-btn">Download Selected</button>
         </div>
