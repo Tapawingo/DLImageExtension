@@ -114,6 +114,12 @@ body {
     margin-top: 0;
 }
 
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
 .modal-content label,
 .full-width-input label,
 .inline-inputs label {
@@ -167,7 +173,8 @@ body {
 
 #download-btn,
 #open-filter-btn,
-#deselect-all-btn {
+#deselect-all-btn,
+.modal-buttons button {
     cursor: pointer;
     padding: 6px 12px;
     font-size: 0.9em;
@@ -175,7 +182,10 @@ body {
     background: var(--bg-light);
     border: 1px solid var(--border-light);
     color: var(--text-light);
-    transition: background-color 0.2s;
+}
+
+#download-btn, #open-filter-btn {
+    font-size: 1em;
 }
 
 #download-btn {
@@ -184,7 +194,8 @@ body {
 
 #download-btn:hover,
 #open-filter-btn:hover,
-#deselect-all-btn:hover {
+#deselect-all-btn:hover,
+.modal-buttons button:hover {
     background-color: var(--bg-hover-light);
     border-color: var(--border-hover-light);
     color: var(--text-hover-light);
@@ -250,11 +261,11 @@ body {
     
     .modal-content,
     .modal-content input,
-    .modal-buttons button,
     #download-btn-container,
     #download-btn,
     #open-filter-btn,
-    #deselect-all-btn {
+    #deselect-all-btn,
+    .modal-buttons button {
         background-color: var(--bg-dark);
         border-color: var(--border-dark);
         color: var(--text-dark);
@@ -262,7 +273,8 @@ body {
     
     #download-btn:hover,
     #open-filter-btn:hover,
-    #deselect-all-btn:hover {
+    #deselect-all-btn:hover,
+    .modal-buttons button:hover {
         background-color: var(--bg-hover-dark);
         border-color: var(--border-hover-dark);
         color: var(--text-hover-dark);
