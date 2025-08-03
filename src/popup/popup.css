@@ -1,18 +1,18 @@
 :root {
-    /* Light mode */
+    /* Light mode variables */
     --bg-light: #f7f8f9;
-    --bg-hover-light: #000000;
-    --text-light: #000000;
-    --text-hover-light: #ffffff;
-    --border-light: #000000;
-    --border-hover-light: #000000;
+    --bg-hover-light: #000;
+    --text-light: #000;
+    --text-hover-light: #fff;
+    --border-light: #000;
+    --border-hover-light: #000;
     
-    /* Dark mode */
+    /* Dark mode variables */
     --bg-dark: #101214;
     --bg-hover-dark: #dee4ea;
-    --text-dark: #ffffff;
-    --text-hover-dark: #000000;
-    --border-dark: #444444;
+    --text-dark: #fff;
+    --text-hover-dark: #000;
+    --border-dark: #444;
     --border-hover-dark: #dee4ea;
 }
 
@@ -26,8 +26,8 @@ body {
     overflow-y: auto;
     background-color: var(--bg-light);
     color: var(--text-light);
-    
-    background: linear-gradient(to right, rgba(128, 128, 128, 0.071) 1px, transparent 1px),
+    background:
+    linear-gradient(to right, rgba(128, 128, 128, 0.071) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(128, 128, 128, 0.071) 1px, transparent 1px);
     background-size: 24px 24px;
 }
@@ -61,7 +61,6 @@ body {
 
 .image-container input[type="checkbox"] {
     appearance: none;
-    -webkit-appearance: none;
     position: absolute;
     top: 6px;
     left: 6px;
@@ -115,53 +114,28 @@ body {
     margin-top: 0;
 }
 
-.modal-content label {
+.modal-content label,
+.full-width-input label,
+.inline-inputs label {
     display: block;
-    margin: 10px 0;
     font-size: 0.9em;
-}
-
-.modal-content input {
-    width: 100%;
-    padding: 6px;
-    margin-top: 4px;
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
-}
-
-.modal-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
-}
-
-.modal-buttons button {
-    padding: 6px 12px;
-    border-radius: 4px;
-    border: 1px solid var(--border-light);
-    background: var(--bg-light);
-    color: var(--text-light);
-    cursor: pointer;
-}
-
-.full-width-input {
-    margin-bottom: 10px;
-}
-
-.full-width-input label {
-    display: flex;
+    margin: 10px 0 0;
     flex-direction: column;
-    font-size: 0.9em;
-    width: 100%;
 }
 
-.full-width-input input {
+.modal-content input,
+.full-width-input input,
+.inline-inputs input {
     width: 100%;
     padding: 6px;
     margin-top: 4px;
     border: 1px solid var(--border-light);
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.full-width-input {
+    margin-bottom: 10px;
 }
 
 .inline-inputs {
@@ -172,27 +146,15 @@ body {
 
 .inline-inputs label {
     flex: 1 1 0;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.9em;
     min-width: 0;
-}
-
-.inline-inputs input {
-    flex: 1;
-    width: 100%;
-    min-width: 0;
-    margin-top: 4px;
-    padding: 6px;
-    box-sizing: border-box;
 }
 
 #download-btn-container {
     position: fixed;
     height: 50px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 3;
     display: flex;
     justify-content: center;
@@ -203,42 +165,28 @@ body {
     margin: 0 5px;
 }
 
-#download-btn, #open-filter-btn {
-    z-index: 3;
+#download-btn,
+#open-filter-btn,
+#deselect-all-btn {
     cursor: pointer;
-    
-    padding: 0.5rem 0.75rem;
-    font-size: 1em;
+    padding: 6px 12px;
+    font-size: 0.9em;
     border-radius: 4px;
-    
     background: var(--bg-light);
     border: 1px solid var(--border-light);
     color: var(--text-light);
+    transition: background-color 0.2s;
 }
 
 #download-btn {
     flex-grow: 1;
 }
 
-#download-btn:hover, #open-filter-btn:hover {
-    background-color: var(--bg-hover-light);
-    border-color: var(--border-hover-light);
-    color: var(--text-hover-light);
-}
-
-#deselect-all-btn {
-    background-color: var(--bg-light);
-    border: 1px solid var(--border-light);
-    color: var(--text-light);
-    border-radius: 3px;
-    padding: 6px 12px;
-    font-size: 0.9em;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
+#download-btn:hover,
+#open-filter-btn:hover,
 #deselect-all-btn:hover {
     background-color: var(--bg-hover-light);
+    border-color: var(--border-hover-light);
     color: var(--text-hover-light);
 }
 
@@ -268,26 +216,22 @@ body {
     animation: shimmer 1.5s infinite;
 }
 
-@keyframes shimmer {
-    100% {
-        left: 100%;
-    }
-}
-
 .skeleton-box {
     width: 100%;
     height: 60px;
     border-radius: 6px;
 }
 
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: var(--bg-dark);
         color: var(--text-dark);
-    }
-    
-    .image-container img {
-        border-color: var(--border-dark);
     }
     
     .image-container input[type="checkbox"] {
@@ -304,48 +248,23 @@ body {
         border-color: var(--text-dark);
     }
     
-    .modal-content {
-        background: var(--bg-dark);
-        color: var(--text-dark);
-    }
-    
-    .modal-content input {
-        background: var(--bg-dark);
-        color: var(--text-dark);
-        border-color: var(--border-dark);
-    }
-    
-    .modal-buttons button {
-        background: var(--bg-dark);
-        border-color: var(--border-dark);
-        color: var(--text-dark);
-    }
-    
-    #download-btn-container {
-        background: var(--bg-dark);
-        border-top: 1px solid var(--border-dark);
-    }
-    
-    #download-btn, #open-filter-btn {
-        background-color: var(--bg-dark);
-        border-color: var(--border-dark);
-        color: var(--text-dark);
-    }
-    
-    #download-btn:hover, #open-filter-btn:hover {
-        background-color: var(--bg-hover-dark);
-        border-color: var(--border-hover-dark);
-        color: var(--text-hover-dark);
-    }
-    
+    .modal-content,
+    .modal-content input,
+    .modal-buttons button,
+    #download-btn-container,
+    #download-btn,
+    #open-filter-btn,
     #deselect-all-btn {
         background-color: var(--bg-dark);
         border-color: var(--border-dark);
         color: var(--text-dark);
     }
     
+    #download-btn:hover,
+    #open-filter-btn:hover,
     #deselect-all-btn:hover {
         background-color: var(--bg-hover-dark);
+        border-color: var(--border-hover-dark);
         color: var(--text-hover-dark);
     }
     
@@ -362,4 +281,4 @@ body {
         rgba(255, 255, 255, 0) 70%
         );
     }
-}  
+}
