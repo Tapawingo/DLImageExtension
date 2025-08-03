@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="popup.css">
-        <link rel="stylesheet" href="../css/all.min.css">
-        <script src="../scripts/jszip.min.js"></script>
-    </head>
-    <body>
-        <div id="image-grid"></div>
-
-        <div id="no-images" style="display: none; text-align: center; margin-top: 2rem;">
-            <div style="font-size: 2rem;"><i class="fa-solid fa-circle-exclamation"></i></div>
-            <p>No images found</p>
+<head>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="../css/all.min.css">
+    <script src="../scripts/jszip.min.js"></script>
+</head>
+<body>
+    <button id="deselect-all-btn" style="margin-bottom: 10px;">Deselect All</button>
+    
+    <div id="image-grid"></div>
+    
+    <div id="no-images" style="display: none; text-align: center; margin-top: 2rem;">
+        <div style="font-size: 2rem;"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <p>No images found</p>
+    </div>
+    
+    <div id="download-btn-container">
+        <button id="download-btn">Download Selected</button>
+        <button id="open-filter-btn"><i class="fa-solid fa-filter"></i></button>
+    </div>
+    
+    <div id="filter-modal" class="modal">
+        <div class="modal-content">
+            <h3>Filter Images</h3>
+            <div class="full-width-input">
+                <label>
+                    Filename contains:
+                    <input type="text" id="filter-name" placeholder="e.g. logo, .png" />
+                </label>
+            </div>
+            <div class="inline-inputs">
+                <label>
+                    Min width (px):
+                    <input type="number" id="filter-width" min="0" />
+                </label>
+                <label>
+                    Min height (px):
+                    <input type="number" id="filter-height" min="0" />
+                </label>
+            </div>
+            <div class="modal-buttons">
+                <button id="apply-filters-btn">Apply Filters</button>
+                <button id="cancel-filters-btn">Cancel</button>
+            </div>
         </div>
-
-        <div id="download-btn-container">
-            <button id="download-btn">Download Selected</button>
-        </div>
-        <script src="popup.js"></script>
-    </body>
+    </div>
+    <script src="popup.js"></script>
+</body>
 </html>

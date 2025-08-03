@@ -6,7 +6,7 @@
     --text-hover-light: #ffffff;
     --border-light: #000000;
     --border-hover-light: #000000;
-  
+    
     /* Dark mode */
     --bg-dark: #101214;
     --bg-hover-dark: #dee4ea;
@@ -15,29 +15,30 @@
     --border-dark: #444444;
     --border-hover-dark: #dee4ea;
 }
-  
+
 body {
     border-radius: 12px;
     margin: 0;
     padding: 10px 10px 70px;
     width: 300px;
+    min-height: 250px;
     font-family: sans-serif;
     overflow-y: auto;
     background-color: var(--bg-light);
     color: var(--text-light);
-
+    
     background: linear-gradient(to right, rgba(128, 128, 128, 0.071) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(128, 128, 128, 0.071) 1px, transparent 1px);
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.071) 1px, transparent 1px);
     background-size: 24px 24px;
 }
-  
+
 #image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 8px;
     margin-bottom: 60px;
 }
-  
+
 .image-container {
     position: relative;
     aspect-ratio: 1 / 1;
@@ -48,7 +49,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-  
+
 .image-container img {
     width: 100%;
     height: 100%;
@@ -57,7 +58,7 @@ body {
     border: none;
     border-radius: 6px;
 }
-  
+
 .image-container input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
@@ -76,7 +77,7 @@ body {
     background-color: var(--text-light);
     border-color: var(--text-light);
 }
-  
+
 .image-container input[type="checkbox"]:checked::after {
     content: '';
     position: absolute;
@@ -89,6 +90,103 @@ body {
     transform: rotate(45deg);
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-light);
+    color: var(--text-light);
+    padding: 16px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 280px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+.modal-content label {
+    display: block;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.modal-buttons button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-light);
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.full-width-input {
+    margin-bottom: 10px;
+}
+
+.full-width-input label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+.full-width-input input {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.inline-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.inline-inputs label {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+    min-width: 0;
+}
+
+.inline-inputs input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    margin-top: 4px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
 #download-btn-container {
     position: fixed;
     height: 50px;
@@ -99,27 +197,48 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 5px;
     background: var(--bg-light);
     border-top: 1px solid var(--border-light);
+    margin: 0 5px;
 }
-  
-#download-btn {
+
+#download-btn, #open-filter-btn {
     z-index: 3;
     cursor: pointer;
     
-    width: 90%;
     padding: 0.5rem 0.75rem;
     font-size: 1em;
     border-radius: 4px;
-  
+    
     background: var(--bg-light);
     border: 1px solid var(--border-light);
     color: var(--text-light);
-  }
-  
-#download-btn:hover {
+}
+
+#download-btn {
+    flex-grow: 1;
+}
+
+#download-btn:hover, #open-filter-btn:hover {
     background-color: var(--bg-hover-light);
     border-color: var(--border-hover-light);
+    color: var(--text-hover-light);
+}
+
+#deselect-all-btn {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-light);
+    color: var(--text-light);
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#deselect-all-btn:hover {
+    background-color: var(--bg-hover-light);
     color: var(--text-hover-light);
 }
 
@@ -141,14 +260,14 @@ body {
     height: 100%;
     width: 150%;
     background: linear-gradient(
-        120deg,
-        rgba(255, 255, 255, 0) 30%,
-        rgba(255, 255, 255, 0.4) 50%,
-        rgba(255, 255, 255, 0) 70%
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 70%
     );
     animation: shimmer 1.5s infinite;
 }
-  
+
 @keyframes shimmer {
     100% {
         left: 100%;
@@ -160,17 +279,17 @@ body {
     height: 60px;
     border-radius: 6px;
 }
-  
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: var(--bg-dark);
         color: var(--text-dark);
     }
-  
+    
     .image-container img {
         border-color: var(--border-dark);
     }
-
+    
     .image-container input[type="checkbox"] {
         border-color: var(--border-dark);
         background-color: var(--bg-dark);
@@ -184,24 +303,52 @@ body {
     .image-container input[type="checkbox"]:checked::after {
         border-color: var(--text-dark);
     }
-
+    
+    .modal-content {
+        background: var(--bg-dark);
+        color: var(--text-dark);
+    }
+    
+    .modal-content input {
+        background: var(--bg-dark);
+        color: var(--text-dark);
+        border-color: var(--border-dark);
+    }
+    
+    .modal-buttons button {
+        background: var(--bg-dark);
+        border-color: var(--border-dark);
+        color: var(--text-dark);
+    }
+    
     #download-btn-container {
         background: var(--bg-dark);
         border-top: 1px solid var(--border-dark);
     }
-  
-    #download-btn {
+    
+    #download-btn, #open-filter-btn {
         background-color: var(--bg-dark);
         border-color: var(--border-dark);
         color: var(--text-dark);
     }
-  
-    #download-btn:hover {
+    
+    #download-btn:hover, #open-filter-btn:hover {
         background-color: var(--bg-hover-dark);
         border-color: var(--border-hover-dark);
         color: var(--text-hover-dark);
     }
-
+    
+    #deselect-all-btn {
+        background-color: var(--bg-dark);
+        border-color: var(--border-dark);
+        color: var(--text-dark);
+    }
+    
+    #deselect-all-btn:hover {
+        background-color: var(--bg-hover-dark);
+        color: var(--text-hover-dark);
+    }
+    
     .skeleton {
         background: rgba(255, 255, 255, 0.05);
         border-color: rgba(255, 255, 255, 0.1);
@@ -209,10 +356,10 @@ body {
     
     .skeleton::before {
         background: linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0) 30%,
-            rgba(255, 255, 255, 0.2) 50%,
-            rgba(255, 255, 255, 0) 70%
+        120deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 70%
         );
     }
 }  
