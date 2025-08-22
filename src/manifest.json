@@ -1,9 +1,9 @@
 {
     "name": "DL Image Extension",
-    "description": "Bulk download all images visible on page",
+    "description": "A minimal and efficient Chromium extension that allows users to bulk download all images from the current webpage with ease.",
     "version": "1.0.2",
     "manifest_version": 3,
-    "permissions": ["scripting", "activeTab", "downloads"],
+    "permissions": ["activeTab"],
     "action": {
         "default_popup": "popup/popup.html",
         "default_icon": {
